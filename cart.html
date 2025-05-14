@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shopping Cart - Mobil.io</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { background: #fff; }
+    .cart-container {
+      display: flex;
+      gap: 2rem;
+      margin: 40px auto;
+      max-width: 1200px;
+      justify-content: space-between;
+    }
+    .cart-list {
+      flex: 2;
+    }
+    .cart-summary {
+      flex: 1;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(106,13,173,0.07);
+      padding: 2rem 2rem 1.5rem 2rem;
+      min-width: 340px;
+      max-width: 400px;
+      height: fit-content;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      border-bottom: 1px solid #eee;
+      padding: 1.2rem 0;
+    }
+    .cart-item:last-child { border-bottom: none; }
+    .cart-item-img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #f5f5f5;
+    }
+    .cart-item-details {
+      flex: 1;
+    }
+    .cart-item-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .cart-item-desc {
+      color: #555;
+      font-size: 0.95rem;
+    }
+    .cart-item-price {
+      color: #6a0dad;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .cart-item-old-price {
+      color: #999;
+      text-decoration: line-through;
+      font-size: 0.95rem;
+      margin-left: 0.5rem;
+    }
+    .cart-item-remove {
+      color: #222;
+      cursor: pointer;
+      margin-left: 1rem;
+      font-size: 1.1rem;
+    }
+    .cart-item-remove:hover { color: #6a0dad; }
+    .cart-item-qty {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+    }
+    .cart-summary-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    .cart-summary-list {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .cart-summary-list li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    .cart-summary-total {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #6a0dad;
+      text-align: right;
+      margin: 1.5rem 0 1rem 0;
+    }
+    .cart-summary-promo {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .cart-summary-promo input {
+      flex: 1;
+      border-radius: 8px;
+      border: 1px solid #d1b3ff;
+      background: #f3eaff;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+    }
+    .cart-summary-promo button {
+      background: #b388ff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.5rem 1.2rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .cart-summary-promo button:hover { background: #6a0dad; }
+    .cart-summary-checkout {
+      width: 100%;
+      background: #6a0dad;
+      color: #fff;
+      border: none;
+      border-radius: 2rem;
+      padding: 0.9rem 0;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+      transition: background 0.2s;
+    }
+    .cart-summary-checkout:hover { background: #8d3fd6; }
+    .continue-shopping {
+      color: #222;
+      text-decoration: none;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+    .continue-shopping i { margin-right: 0.5rem; }
+    @media (max-width: 900px) {
+      .cart-container { flex-direction: column; }
+      .cart-summary { min-width: unset; max-width: unset; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar (identical to index.html) -->
+  <nav class="navbar sticky-top">
+    <div class="navbar-logo d-flex align-items-center">
+      <a href="index.html">
+        <img src="images/mobilio-logo.png" alt="Mobil.io Logo" class="navbar-logo-img" />
+      </a>
+    </div>
+    <div class="navbar-search-wrapper">
+      <div class="input-group search-bar">
+        <span class="input-group-text">
+          <i class="bi bi-search"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Search..." aria-label="Search" />
+      </div>
+    </div>
+    <div class="navbar-links-wrapper">
+      <div class="nav-links">
+        <a class="nav-link" href="catalogue.html">Catalogue</a>
+        <a class="nav-link" href="compare.html">Compare phones</a>
+        <a class="nav-link" href="#">Contact us</a>
+      </div>
+    </div>
+    <div class="action-icons">
+      <i id="theme-toggle" class="bi bi-moon-fill"></i>
+      <div class="dropdown d-inline">
+        <i class="bi bi-person-fill dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer;"></i>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+          <li><a class="dropdown-item" href="login.html">Login</a></li>
+          <li><a class="dropdown-item" href="register.html">Register</a></li>
+        </ul>
+      </div>
+      <a href="cart.html"><i class="bi bi-cart-fill"></i></a>
+    </div>
+  </nav>
+
+  <div class="cart-container">
+    <!-- Cart List -->
+    <div class="cart-list">
+      <a href="catalogue.html" class="continue-shopping"><i class="bi bi-arrow-left"></i> Continue Shopping</a>
+      <h2>Your Shopping Cart</h2>
+      <div class="cart-item">
+        <img src="images/samsungs24.jpg" class="cart-item-img" alt="Samsung Galaxy S24 Ultra" />
+        <div class="cart-item-details">
+          <div class="cart-item-title">Samsung Galaxy S24 Ultra</div>
+          <div class="cart-item-desc">High-resolution screen for vivid colors</div>
+          <div class="cart-item-price">€1,143.99</div>
+        </div>
+        <div class="cart-item-qty">
+          Qty
+          <select class="form-select form-select-sm" style="width:auto;display:inline-block;margin-left:6px;">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <span class="cart-item-remove"><i class="bi bi-trash"></i> Remove</span>
+      </div>
+      <div class="cart-item">
+        <img src="images/iphone14.jpg" class="cart-item-img" alt="Iphone 13 Pro" />
+        <div class="cart-item-details">
+          <div class="cart-item-title">Iphone 13 Pro</div>
+          <div class="cart-item-desc">Advanced camera features for stunning photos</div>
+          <div>
+            <span class="cart-item-price">€778</span>
+            <span class="cart-item-old-price">€999</span>
+          </div>
+        </div>
+        <div class="cart-item-qty">
+          Qty
+          <select class="form-select form-select-sm" style="width:auto;display:inline-block;margin-left:6px;">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <span class="cart-item-remove"><i class="bi bi-trash"></i> Remove</span>
+      </div>
+      <div class="cart-item">
+        <img src="images/homemotorola.jpg" class="cart-item-img" alt="Xiaomi Civi 4 Pro" />
+        <div class="cart-item-details">
+          <div class="cart-item-title">Xiaomi Civi 4 Pro</div>
+          <div class="cart-item-desc">Long-lasting battery for all-day</div>
+          <div class="cart-item-price">€350</div>
+        </div>
+        <div class="cart-item-qty">
+          Qty
+          <select class="form-select form-select-sm" style="width:auto;display:inline-block;margin-left:6px;">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <span class="cart-item-remove"><i class="bi bi-trash"></i> Remove</span>
+      </div>
+    </div>
+    <!-- Cart Summary -->
+    <div class="cart-summary">
+      <div class="cart-summary-title">Your Order</div>
+      <ul class="cart-summary-list list-unstyled">
+        <li>
+          <span>1x Samsung Galaxy S24 Ultra</span>
+          <span>€1,143.99</span>
+        </li>
+        <li>
+          <span>1x Iphone 13 Pro</span>
+          <span>€778</span>
+        </li>
+        <li>
+          <span>1x Xiaomi Civi 4 Pro</span>
+          <span>€350</span>
+        </li>
+      </ul>
+      <div class="cart-summary-promo">
+        <input type="text" placeholder="Enter promo code" />
+        <button>Apply</button>
+      </div>
+      <div class="cart-summary-total">€2 271,99</div>
+      <button class="cart-summary-checkout">Checkout</button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Theme toggle (identical to index.html)
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      themeToggle.classList.add('spin');
+      themeToggle.addEventListener('animationend', () => themeToggle.classList.remove('spin'), { once: true });
+      document.body.classList.toggle('dark-theme');
+      themeToggle.classList.toggle('bi-moon-fill');
+      themeToggle.classList.toggle('bi-sun-fill');
+    });
+  </script>
+</body>
+</html>

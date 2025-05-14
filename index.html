@@ -44,13 +44,19 @@
     <div class="navbar-links-wrapper">
       <div class="nav-links">
         <a class="nav-link" href="catalogue.html">Catalogue</a>
-        <a class="nav-link" href="#">Compare phones</a>
+        <a class="nav-link" href="compare.html">Compare phones</a>
         <a class="nav-link" href="#">Contact us</a>
       </div>
     </div>
     <div class="action-icons">
       <i id="theme-toggle" class="bi bi-moon-fill"></i>
-      <i class="bi bi-person-fill"></i>
+      <div class="dropdown d-inline">
+        <i class="bi bi-person-fill dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer;"></i>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+          <li><a class="dropdown-item" href="login.html">Login</a></li>
+          <li><a class="dropdown-item" href="register.html">Register</a></li>
+        </ul>
+      </div>
       <i class="bi bi-cart-fill"></i>
     </div>
   </nav>
@@ -59,7 +65,7 @@
   <section class="horizontal-divider d-flex">
     <div class="hero-content text-start">
       <div class="hero-text">Discover Your Next Phone</div>
-      <button class="btn shop-btn mt-3">Shop Now</button>
+      <button class="btn shop-btn mt-3" onclick="window.location.href='catalogue.html'">Shop Now</button>
     </div>
     <img src="images/homeimg.png" alt="Phone showcase" class="hero-image" />
   </section>
