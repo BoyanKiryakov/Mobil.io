@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mobil.io NavBar & Hero</title>
+  <title>Mobil.io</title>
 
   <!-- Bootstrap CSS -->
   <link 
@@ -30,21 +30,34 @@
 
   <!-- Sticky navbar -->
   <nav class="navbar sticky-top">
-    <i class="bi bi-phone-fill"></i>
-    <a class="navbar-brand" href="#">Mobil.io</a>
-    <div class="input-group search-bar">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="form-control" placeholder="Search..." aria-label="Search" />
+    <div class="navbar-logo d-flex align-items-center">
+      <a href="index.html">
+        <img src="images/mobilio-logo.png" alt="Mobil.io Logo" class="navbar-logo-img" />
+      </a>
     </div>
-    <div class="nav-links">
-      <a class="nav-link" href="#">Catalogue</a>
-      <a class="nav-link" href="#">Compare phones</a>
-      <a class="nav-link" href="#">Contact us</a>
+    <div class="navbar-search-wrapper">
+      <div class="input-group search-bar">
+        <span class="input-group-text"><i class="bi bi-search"></i></span>
+        <input type="text" class="form-control" placeholder="Search..." aria-label="Search" />
+      </div>
+    </div>
+    <div class="navbar-links-wrapper">
+      <div class="nav-links">
+        <a class="nav-link" href="catalogue.html">Catalogue</a>
+        <a class="nav-link" href="compare.html">Compare phones</a>
+        <a class="nav-link" href="#">Contact us</a>
+      </div>
     </div>
     <div class="action-icons">
       <i id="theme-toggle" class="bi bi-moon-fill"></i>
-      <i class="bi bi-person-fill"></i>
-      <i class="bi bi-cart-fill"></i>
+      <div class="dropdown d-inline">
+        <i class="bi bi-person-fill dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer;"></i>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+          <li><a class="dropdown-item" href="login.html">Login</a></li>
+          <li><a class="dropdown-item" href="register.html">Register</a></li>
+        </ul>
+      </div>
+      <a href="cart.html"><i class="bi bi-cart-fill"></i></a>
     </div>
   </nav>
 
@@ -52,7 +65,7 @@
   <section class="horizontal-divider d-flex">
     <div class="hero-content text-start">
       <div class="hero-text">Discover Your Next Phone</div>
-      <button class="btn shop-btn mt-3">Shop Now</button>
+      <button class="btn shop-btn mt-3" onclick="window.location.href='catalogue.html'">Shop Now</button>
     </div>
     <img src="images/homeimg.png" alt="Phone showcase" class="hero-image" />
   </section>
