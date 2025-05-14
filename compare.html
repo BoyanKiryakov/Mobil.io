@@ -3,26 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mobil.io Catalogue</title>
-  <!-- Bootstrap CSS -->
-  <link 
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
-    rel="stylesheet"
-  />
-  <!-- Bootstrap Icons -->
-  <link 
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" 
-    rel="stylesheet"
-  />
-  <!-- Roboto font -->
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" 
-    rel="stylesheet"
-  />
-  <!-- Custom CSS -->
+  <title>Compare Phones - Mobil.io</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .compare-title {
+      text-align: center;
+      color: #6a0dad;
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 2rem 0 2rem 0;
+      font-family: 'Roboto', sans-serif;
+    }
+    .compare-container {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .compare-card {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 2px 12px rgba(106,13,173,0.07);
+      padding: 2rem 1.5rem;
+      width: 400px;
+      max-width: 90vw;
+    }
+    .form-label {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .form-select, .form-control {
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 900px) {
+      .compare-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    .input-group.search-bar {
+      align-items: center;
+    }
+    .input-group-text {
+      background: #f5f5f5;
+      border-right: none;
+      font-weight: 500;
+      color: #6a0dad; /* Purple color for the icon */
+      display: flex;
+      align-items: center;
+      border-top-left-radius: 0.25rem;
+      border-bottom-left-radius: 0.25rem;
+      border: 1px solid #dee2e6;
+      border-right: none;
+    }
+    .search-bar .form-control {
+      border-radius: 0.25rem;
+      font-weight: 500;
+      background-color: #f5f5f5;
+      color: #333;
+      border-left: none;
+      border: 1px solid #dee2e6;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  </style>
 </head>
 <body>
+  <!-- Navigation Bar (identical to index.html) -->
   <nav class="navbar sticky-top">
     <div class="navbar-logo d-flex align-items-center">
       <a href="index.html">
@@ -31,7 +81,9 @@
     </div>
     <div class="navbar-search-wrapper">
       <div class="input-group search-bar">
-        <span class="input-group-text"><i class="bi bi-search"></i></span>
+        <span class="input-group-text">
+          <i class="bi bi-search"></i>
+        </span>
         <input type="text" class="form-control" placeholder="Search..." aria-label="Search" />
       </div>
     </div>
@@ -51,304 +103,41 @@
           <li><a class="dropdown-item" href="register.html">Register</a></li>
         </ul>
       </div>
-      <i class="bi bi-cart-fill" onclick="window.location.href='cart.html'" style="cursor:pointer;"></i>
+      <a href="cart.html"><i class="bi bi-cart-fill"></i></a>
     </div>
   </nav>
-  <section class="container py-5">
-    <div class="row">
-      <!-- Filter Sidebar -->
-      <aside class="col-md-3">
-        <div class="filter-sidebar p-4">
-          <h4 class="filter-title-main mb-4">Filter Specifications</h4>
 
-          <div class="filter-section mb-3">
-            <div class="filter-label">Operating System</div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="os-android">
-              <label class="form-check-label" for="os-android">Android</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="os-ios">
-              <label class="form-check-label" for="os-ios">iOS</label>
-            </div>
-          </div>
-
-          <div class="filter-section mb-3">
-            <div class="filter-label">Brand</div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="brand-apple">
-              <label class="form-check-label" for="brand-apple">Apple</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="brand-samsung">
-              <label class="form-check-label" for="brand-samsung">Samsung</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="brand-motorola">
-              <label class="form-check-label" for="brand-motorola">Motorola</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="brand-huawei">
-              <label class="form-check-label" for="brand-huawei">Huawei</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="brand-xiaomi">
-              <label class="form-check-label" for="brand-xiaomi">Xiaomi</label>
-            </div>
-          </div>
-
-          <div class="filter-section mb-3">
-            <div class="filter-label">Camera</div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="camera-200">
-              <label class="form-check-label" for="camera-200">200 MP</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="camera-108">
-              <label class="form-check-label" for="camera-108">108 MP</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="camera-64">
-              <label class="form-check-label" for="camera-64">64 MP</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="camera-50">
-              <label class="form-check-label" for="camera-50">50 MP</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="camera-48">
-              <label class="form-check-label" for="camera-48">48 MP</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="camera-32">
-              <label class="form-check-label" for="camera-32">32 MP</label>
-            </div>
-          </div>
-
-          <div class="filter-section mb-3">
-            <div class="filter-label">RAM Memory</div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="ram-4">
-              <label class="form-check-label" for="ram-4">4 GB</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="ram-6">
-              <label class="form-check-label" for="ram-6">6 GB</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="ram-8">
-              <label class="form-check-label" for="ram-8">8 GB</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="ram-12">
-              <label class="form-check-label" for="ram-12">12 GB</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="ram-16">
-              <label class="form-check-label" for="ram-16">16 GB</label>
-            </div>
-          </div>
-
-          <!-- Refresh Rate Filter -->
-          <div class="filter-section mb-3">
-            <div class="filter-label">Refresh Rate</div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="refresh-60">
-              <label class="form-check-label" for="refresh-60">60 Hz</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="refresh-90">
-              <label class="form-check-label" for="refresh-90">90 Hz</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="refresh-120">
-              <label class="form-check-label" for="refresh-120">120 Hz</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="refresh-144">
-              <label class="form-check-label" for="refresh-144">144 Hz</label>
-            </div>
-          </div>
-
-          <!-- Battery Capacity Filter -->
-          <div class="filter-section mb-3">
-            <div class="filter-label">Battery Capacity</div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="battery-2500">
-              <label class="form-check-label" for="battery-2500">2500 mAh</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="battery-2501-3000">
-              <label class="form-check-label" for="battery-2501-3000">2501 mAh - 3000 mAh</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="battery-4000">
-              <label class="form-check-label" for="battery-4000">4000 mAh and higher</label>
-            </div>
-          </div>
-
-          <!-- Price Range Filter -->
-          <div class="filter-section mb-3">
-            <div class="filter-label">Price Range</div>
-            <div class="d-flex align-items-center mb-2">
-              <input type="range" class="form-range purple-range" min="0" max="3000" id="priceRange" value="3000" />
-            </div>
-            <div class="d-flex justify-content-between mb-2">
-              <span>€0</span>
-              <span id="priceMaxLabel">€3000</span>
-            </div>
-            <div class="d-flex gap-2">
-              <input type="number" class="form-control form-control-sm" placeholder="Min Price" id="minPrice" />
-              <input type="number" class="form-control form-control-sm" placeholder="Max Price" id="maxPrice" />
-            </div>
-          </div>
-
-          <!-- Memory Filter -->
-          <div class="filter-section mb-3">
-            <div class="filter-label">Memory</div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="memory-1024">
-              <label class="form-check-label" for="memory-1024">1024 GB</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="memory-512">
-              <label class="form-check-label" for="memory-512">512 GB</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="memory-256">
-              <label class="form-check-label" for="memory-256">256 GB</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="memory-128">
-              <label class="form-check-label" for="memory-128">128 GB</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="memory-64">
-              <label class="form-check-label" for="memory-64">64 GB</label>
-            </div>
-          </div>
-
-          <!-- Screen Size Filter -->
-          <div class="filter-section mb-3">
-            <div class="filter-label">Screen Size</div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="screen-6-5">
-              <label class="form-check-label" for="screen-6-5">6.01" - 6.5"</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="screen-6-7">
-              <label class="form-check-label" for="screen-6-7">6.51" - 7"</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="screen-7plus">
-              <label class="form-check-label" for="screen-7plus">7.01" and higher</label>
-            </div>
-          </div>
-
-          <!-- Color Filter -->
-          <div class="filter-section mb-3">
-            <div class="filter-label">Color</div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="color-black">
-              <label class="form-check-label" for="color-black">Black</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="color-white">
-              <label class="form-check-label" for="color-white">White</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="color-silver">
-              <label class="form-check-label" for="color-silver">Silver</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="color-bronze">
-              <label class="form-check-label" for="color-bronze">Bronze</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="color-gold">
-              <label class="form-check-label" for="color-gold">Gold</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="color-pink">
-              <label class="form-check-label" for="color-pink">Pink</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input purple-check" type="checkbox" id="color-blue">
-              <label class="form-check-label" for="color-blue">Blue</label>
-            </div>
-          </div>
-          <button class="btn btn-primary w-100 mt-3 apply-filters-btn" id="applyFilters">Apply Filters</button>
-        </div>
-      </aside>
-      <!-- Phone Cards Section -->
-      <div class="col-md-9">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 0;">Phone Catalogue</h2>
-          <div>
-            <label for="sort-by" class="form-label me-2 mb-0">Sort by:</label>
-            <select id="sort-by" class="form-select d-inline-block w-auto">
-              <option value="price-low-high">Price: Low to High</option>
-              <option value="price-high-low">Price: High to Low</option>
-            </select>
-          </div>
-        </div>
-        <div class="row g-4 mt-3" id="phones-container">
-          <!-- Phone cards will be dynamically inserted here -->
-          <div class="col-md-4">
-            <div class="custom-phone-card">
-              <img src="images/iphone14.jpg" class="phone-img" alt="iPhone 14" />
-              <div class="phone-info">
-                <h5 class="phone-title">Iphone 14</h5>
-                <div class="phone-price">€629</div>
-                <div class="phone-spec">RAM: 6 GB</div>
-                <div class="phone-spec">Internal Storage: 128 GB</div>
-                <div class="phone-spec">Camera: Dual 12MP cameras</div>
-                <div class="d-flex justify-content-center gap-2 mt-3">
-                  <button class="btn btn-add-cart">Add to Cart</button>
-                  <button class="btn btn-view-product">View Product</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="custom-phone-card">
-              <img src="images/samsungs24.jpg" class="phone-img" alt="Samsung Galaxy S24" />
-              <div class="phone-info">
-                <h5 class="phone-title">Samsung Galaxy S24</h5>
-                <div class="phone-price">€999</div>
-                <div class="phone-spec">RAM: 8 GB</div>
-                <div class="phone-spec">Internal Storage: 128 GB</div>
-                <div class="phone-spec">Camera: 50MP (main)</div>
-                <div class="d-flex justify-content-center gap-2 mt-3">
-                  <button class="btn btn-add-cart">Add to Cart</button>
-                  <button class="btn btn-view-product">View Product</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="custom-phone-card">
-              <img src="images/motoedge20.jpg" class="phone-img" alt="Motorola Edge 20" />
-              <div class="phone-info">
-                <h5 class="phone-title">Motorola Edge 20</h5>
-                <div class="phone-price">€299</div>
-                <div class="phone-spec">RAM: 8 GB</div>
-                <div class="phone-spec">Internal Storage: 256 GB</div>
-                <div class="phone-spec">Camera: 108MP (main)</div>
-                <div class="d-flex justify-content-center gap-2 mt-3">
-                  <button class="btn btn-add-cart">Add to Cart</button>
-                  <button class="btn btn-view-product">View Product</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- Compare Phones Section -->
+  <div class="compare-title">Compare Phones</div>
+  <div class="compare-container">
+    <!-- Phone 1 -->
+    <div class="compare-card">
+      <label class="form-label" for="phone1-select">Select Phone</label>
+      <select class="form-select" id="phone1-select">
+        <option selected>Iphone 13 Pro</option>
+        <option>Samsung Galaxy S24</option>
+        <option>Motorola Moto G24 Power</option>
+        <option>Google Pixel 7</option>
+      </select>
+      <label class="form-label" for="phone1-search">Search Phone</label>
+      <input type="text" class="form-control" id="phone1-search" placeholder="Search...">
     </div>
-  </section>
-  <!-- Bootstrap JS bundle -->
+    <!-- Phone 2 -->
+    <div class="compare-card">
+      <label class="form-label" for="phone2-select">Select Phone</label>
+      <select class="form-select" id="phone2-select">
+        <option>Iphone 13 Pro</option>
+        <option>Samsung Galaxy S24</option>
+        <option selected>Motorola Moto G24 Power</option>
+        <option>Google Pixel 7</option>
+      </select>
+      <label class="form-label" for="phone2-search">Search Phone</label>
+      <input type="text" class="form-control" id="phone2-search" placeholder="Search...">
+    </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+    // Theme toggle (identical to index.html)
     const themeToggle = document.getElementById('theme-toggle');
     themeToggle.addEventListener('click', () => {
       themeToggle.classList.add('spin');
@@ -357,14 +146,6 @@
       themeToggle.classList.toggle('bi-moon-fill');
       themeToggle.classList.toggle('bi-sun-fill');
     });
-
-    const priceRange = document.getElementById('priceRange');
-    const priceMaxLabel = document.getElementById('priceMaxLabel');
-    if (priceRange && priceMaxLabel) {
-      priceRange.addEventListener('input', function() {
-        priceMaxLabel.textContent = `€${this.value}`;
-      });
-    }
   </script>
 </body>
-</html> 
+</html>
