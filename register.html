@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register - Mobil.io</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  <style>
+    body {
+      background: #e6e6fa;
+      min-height: 100vh;
+    }
+    .register-container {
+      background: #e6d6fa;
+      border-radius: 80px;
+      max-width: 520px;
+      margin: 40px auto;
+      padding: 40px 32px 32px 32px;
+      box-shadow: 0 4px 24px rgba(106,13,173,0.10);
+    }
+    .register-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .form-label {
+      font-weight: 600;
+    }
+    .form-control, .input-group-text {
+      border-radius: 0.4rem;
+    }
+    .register-btn {
+      background: #6a0dad;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 2rem;
+      padding: 0.7rem 0;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
+    .register-btn:hover {
+      background: #8d3fd6;
+    }
+    .terms-label {
+      color: #222;
+      font-size: 1rem;
+      margin-left: 0.5rem;
+      font-weight: 400;
+    }
+    .back-arrow {
+      color: #6a0dad;
+      font-size: 1.5rem;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    .policy-links {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    .policy-links a {
+      color: #6a0dad;
+      text-decoration: none;
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    .policy-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <a href="login.html" class="back-arrow"><i class="bi bi-arrow-left"></i></a>
+    <div class="register-title">Create your account</div>
+    <form>
+      <div class="mb-3">
+        <label for="first-name" class="form-label">First name</label>
+        <input type="text" class="form-control" id="first-name" required>
+      </div>
+      <div class="mb-3">
+        <label for="last-name" class="form-label">Last name</label>
+        <input type="text" class="form-control" id="last-name" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <div class="input-group">
+          <input type="email" class="form-control" id="email" placeholder="email@example.com" required>
+          <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-group">
+          <input type="password" class="form-control" id="password" placeholder="********************" required>
+          <span class="input-group-text"><i class="bi bi-eye-slash"></i></span>
+        </div>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="terms" required checked>
+        <label class="form-check-label terms-label" for="terms">
+          I agree to the terms and conditions
+        </label>
+      </div>
+      <button type="submit" class="btn register-btn w-100">Register</button>
+    </form>
+    <div class="policy-links">
+      <a href="#">Terms of Service</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
