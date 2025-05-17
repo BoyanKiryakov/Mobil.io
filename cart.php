@@ -148,6 +148,17 @@
       .cart-container { flex-direction: column; }
       .cart-summary { min-width: unset; max-width: unset; }
     }
+    .delivery-section,
+    .order-summary {
+      margin: 0 auto 2rem auto;
+      max-width: 800px;
+    }
+    .order-summary {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(106,13,173,0.07);
+      padding: 2rem 2rem 1.5rem 2rem;
+    }
   </style>
 </head>
 <body>
@@ -274,7 +285,7 @@
         <button>Apply</button>
       </div>
       <div class="cart-summary-total">€2 271,99</div>
-      <button class="cart-summary-checkout">Checkout</button>
+      <button class="cart-summary-checkout" onclick="window.location.href='delivery.html'">Checkout</button>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
