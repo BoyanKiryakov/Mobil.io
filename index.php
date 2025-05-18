@@ -1,3 +1,7 @@
+<?php
+require_once 'includes/db.php';
+require_once 'includes/session.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,44 +32,13 @@
 </head>
 <body>
 
-  <!-- Sticky navbar -->
-  <nav class="navbar sticky-top">
-    <div class="navbar-logo d-flex align-items-center">
-      <a href="index.html">
-        <img src="images/mobilio-logo.png" alt="Mobil.io Logo" class="navbar-logo-img" />
-      </a>
-    </div>
-    <div class="navbar-search-wrapper">
-      <div class="input-group search-bar">
-        <span class="input-group-text"><i class="bi bi-search"></i></span>
-        <input type="text" class="form-control" placeholder="Search..." aria-label="Search" />
-      </div>
-    </div>
-    <div class="navbar-links-wrapper">
-      <div class="nav-links">
-        <a class="nav-link" href="catalogue.html">Catalogue</a>
-        <a class="nav-link" href="compare.html">Compare phones</a>
-        <a class="nav-link" href="#">Contact us</a>
-      </div>
-    </div>
-    <div class="action-icons">
-      <i id="theme-toggle" class="bi bi-moon-fill"></i>
-      <div class="dropdown d-inline">
-        <i class="bi bi-person-fill dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer;"></i>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-          <li><a class="dropdown-item" href="login.html">Login</a></li>
-          <li><a class="dropdown-item" href="register.html">Register</a></li>
-        </ul>
-      </div>
-      <a href="cart.html"><i class="bi bi-cart-fill"></i></a>
-    </div>
-  </nav>
+  <?php include 'includes/header.php'; ?>
 
   <!-- Hero section under navbar -->
   <section class="horizontal-divider d-flex">
     <div class="hero-content text-start">
       <div class="hero-text">Discover Your Next Phone</div>
-      <button class="btn shop-btn mt-3" onclick="window.location.href='catalogue.html'">Shop Now</button>
+      <button class="btn shop-btn mt-3" onclick="window.location.href='catalogue.php'">Shop Now</button>
     </div>
     <img src="images/homeimg.png" alt="Phone showcase" class="hero-image" />
   </section>
@@ -79,7 +52,7 @@
           <img src="images/homesamsung.jpg" class="card-img-top" alt="Samsung" />
           <div class="card-body text-center">
             <h5 class="card-title">Samsung</h5>
-            <button class="btn view-more mt-2">View More</button>
+            <button class="btn view-more mt-2" onclick="window.location.href='catalogue.php?brand=Samsung'">View More</button>
           </div>
         </div>
       </div>
@@ -88,7 +61,7 @@
           <img src="images/homeiphone.jpg" class="card-img-top" alt="iPhone" />
           <div class="card-body text-center">
             <h5 class="card-title">iPhone</h5>
-            <button class="btn view-more mt-2">View More</button>
+            <button class="btn view-more mt-2" onclick="window.location.href='catalogue.php?brand=iPhone'">View More</button>
           </div>
         </div>
       </div>
@@ -97,7 +70,7 @@
           <img src="images/homemotorola.jpg" class="card-img-top" alt="Motorola" />
           <div class="card-body text-center">
             <h5 class="card-title">Motorola</h5>
-            <button class="btn view-more mt-2">View More</button>
+            <button class="btn view-more mt-2" onclick="window.location.href='catalogue.php?brand=Motorola'">View More</button>
           </div>
         </div>
       </div>
