@@ -559,9 +559,7 @@ function extractStorage($storageString) {
       themeToggle.classList.toggle('bi-sun-fill');
     });
 
-    function addToCart(phoneId) {
-      // TODO: Implement add to cart functionality
-    }
+            function addToCart(phoneId) {      fetch('cart_actions.php', {        method: 'POST',        headers: {          'Content-Type': 'application/x-www-form-urlencoded',        },        body: `action=add&phone_id=${phoneId}&quantity=1`      })      .then(response => response.json())      .then(data => {        if (data.success) {          alert('Item added to cart successfully!');        } else {          alert(data.message || 'Error adding item to cart');        }      })      .catch(error => {        console.error('Error:', error);        alert('Error adding item to cart');      });    }
 
     function viewProduct(phoneId) {
       window.location.href = `product.php?id=${phoneId}`;
