@@ -130,6 +130,19 @@ try {
         ) ENGINE=InnoDB;
     ");
 
+    $pdo->exec("
+        CREATE TABLE IF NOT EXISTS contact_messages (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            email VARCHAR(255) NOT NULL,
+            name VARCHAR(255) NOT NULL,
+            message TEXT NOT NULL,
+            created_at DATETIME NOT NULL,
+            status ENUM('new', 'read', 'replied') DEFAULT 'new',
+            INDEX (status),
+            INDEX (created_at)
+        )
+    ");
+
     $pdo->exec(<<<'SQL'
     INSERT INTO brands (id, name) VALUES
       (1,'Motorola'),
