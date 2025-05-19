@@ -8,6 +8,33 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     exit;
 }
 
+// Handle review submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
+    $currentUser = getCurrentUser();
+    if ($currentUser) {
+        $rating = filter_input(INPUT_POST, 'rating', FILTER_VALIDATE_INT);
+        $review_text = trim($_POST['review_text'] ?? '');
+        
+        if ($rating >= 1 && $rating <= 5 && !empty($review_text)) {
+            try {
+                $stmt = $pdo->prepare("
+                    INSERT INTO reviews (client_id, phone_id, rating, review_text)
+                    VALUES (?, ?, ?, ?)
+                ");
+                $stmt->execute([$currentUser['id'], $_GET['id'], $rating, $review_text]);
+                $review_message = "Review submitted successfully!";
+                $review_message_type = "success";
+            } catch (PDOException $e) {
+                $review_message = "Error submitting review. Please try again.";
+                $review_message_type = "danger";
+            }
+        } else {
+            $review_message = "Please provide both a rating and review text.";
+            $review_message_type = "danger";
+        }
+    }
+}
+
 try {
     // Get phone details
     $stmt = $pdo->prepare("
@@ -39,6 +66,14 @@ try {
     // Log error in production
     header('Location: catalogue.php');
     exit;
+}
+
+// Calculate average rating
+$average_rating = 0;
+$total_reviews = count($reviews);
+if ($total_reviews > 0) {
+    $sum_rating = array_sum(array_column($reviews, 'rating'));
+    $average_rating = round($sum_rating / $total_reviews, 1);
 }
 ?>
 <!DOCTYPE html>
@@ -194,6 +229,56 @@ try {
         <!-- Reviews Section -->
         <div class="reviews-section">
             <h2 class="specs-title">Reviews</h2>
+            
+            <?php if (isset($review_message)): ?>
+                <div class="alert alert-<?php echo $review_message_type; ?> alert-dismissible fade show" role="alert">
+                    <?php echo htmlspecialchars($review_message); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif; ?>
+
+            <!-- Review Summary -->
+            <div class="review-summary">
+                <div class="average-rating">
+                    <div class="rating-number"><?php echo number_format($average_rating, 1); ?></div>
+                    <div class="rating-stars">
+                        <?php for ($i = 1; $i <= 5; $i++): ?>
+                            <i class="bi bi-star<?php echo $i <= $average_rating ? '-fill' : ''; ?>"></i>
+                        <?php endfor; ?>
+                    </div>
+                    <div class="total-reviews"><?php echo $total_reviews; ?> reviews</div>
+                </div>
+            </div>
+
+            <!-- Review Form for logged-in users -->
+            <?php $currentUser = getCurrentUser(); ?>
+            <?php if ($currentUser): ?>
+                <div class="review-form-container">
+                    <h3>Write a Review</h3>
+                    <form method="POST" class="review-form">
+                        <div class="mb-3">
+                            <label class="form-label">Rating</label>
+                            <div class="rating-input">
+                                <?php for ($i = 5; $i >= 1; $i--): ?>
+                                    <input type="radio" id="star<?php echo $i; ?>" name="rating" value="<?php echo $i; ?>" required>
+                                    <label for="star<?php echo $i; ?>"><i class="bi bi-star-fill"></i></label>
+                                <?php endfor; ?>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="review_text" class="form-label">Your Review</label>
+                            <textarea class="form-control" id="review_text" name="review_text" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" name="submit_review" class="btn btn-submit">Submit Review</button>
+                    </form>
+                </div>
+            <?php else: ?>
+                <div class="review-login-prompt">
+                    <p>Please <a href="login.php">log in</a> to write a review.</p>
+                </div>
+            <?php endif; ?>
+
+            <!-- Display Reviews -->
             <?php if (empty($reviews)): ?>
                 <p>No reviews yet for this product.</p>
             <?php else: ?>
