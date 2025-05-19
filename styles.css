@@ -1574,95 +1574,148 @@ body.login-bg, body.register-bg, body.forgot-bg {
 }
 .reviews-section {
   margin-top: 40px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(106,13,173,0.07);
+}
+.review-summary {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #f8f4ff;
+  border-radius: 12px;
+}
+.average-rating {
+  display: inline-block;
+}
+.rating-number {
+  font-size: 48px;
+  font-weight: bold;
+  color: #6a0dad;
+  line-height: 1;
+}
+.rating-stars {
+  color: #ffc107;
+  font-size: 24px;
+  margin: 10px 0;
+}
+.total-reviews {
+  color: #666;
+  font-size: 14px;
+}
+.review-form-container {
+  background: #f8f4ff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+.review-form-container h3 {
+  color: #6a0dad;
+  margin-bottom: 20px;
+}
+.rating-input {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.rating-input input {
+  display: none;
+}
+.rating-input label {
+  cursor: pointer;
+  font-size: 24px;
+  color: #ddd;
+  margin: 0 2px;
+}
+.rating-input label:hover,
+.rating-input label:hover ~ label,
+.rating-input input:checked ~ label {
+  color: #ffc107;
 }
 .review-card {
-  border: 1px solid var(--primary-color);
+  background: #fff;
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 20px;
-  background: #f8f4ff;
+  transition: transform 0.2s;
+}
+.review-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(106,13,173,0.1);
 }
 .review-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  align-items: center;
+  margin-bottom: 15px;
 }
 .review-rating {
   color: #ffc107;
+  font-size: 18px;
+  margin-top: 5px;
 }
 .review-date {
-  color: #6c757d;
+  color: #666;
+  font-size: 14px;
 }
 .review-text {
-  margin-top: 10px;
+  color: #333;
+  line-height: 1.6;
 }
-@media (max-width: 768px) {
-  .thumbnail-container {
-    flex-direction: row;
-    margin-right: 0;
-    margin-bottom: 20px;
-    overflow-x: auto;
-  }
+.review-login-prompt {
+  text-align: center;
+  padding: 20px;
+  background: #f8f4ff;
+  border-radius: 12px;
+  margin-bottom: 30px;
 }
-.product-container {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
+.review-login-prompt a {
+  color: #6a0dad;
+  text-decoration: none;
+  font-weight: bold;
 }
-.product-details {
-  background: #fff;
-  border-radius: 24px;
-  box-shadow: 0 2px 12px rgba(106,13,173,0.07);
-  padding: 2rem;
-  margin-bottom: 2rem;
+.review-login-prompt a:hover {
+  text-decoration: underline;
 }
-/* Dark theme overrides for product */
-.dark-theme .product-details {
+/* Dark theme overrides for reviews */
+.dark-theme .reviews-section {
   background: #363342;
-  color: #e0e0e0;
 }
-.dark-theme .product-title {
-  color: #e0e0e0;
+.dark-theme .review-summary,
+.dark-theme .review-form-container,
+.dark-theme .review-login-prompt {
+  background: #2d2b38;
 }
-.dark-theme .product-price {
+.dark-theme .rating-number {
   color: #b388ff;
 }
-.dark-theme .product-description {
+.dark-theme .review-card {
+  background: #363342;
+  border-color: #444;
+}
+.dark-theme .review-text {
   color: #e0e0e0;
 }
-.dark-theme .specs-table {
-  color: #e0e0e0;
+.dark-theme .review-date {
+  color: #adb5bd;
 }
-.dark-theme .specs-table th {
-  background: #2d2b38;
+.dark-theme .review-form-container h3 {
   color: #b388ff;
-  border-color: #444;
 }
-.dark-theme .specs-table td {
-  border-color: #444;
+.dark-theme .review-login-prompt a {
+  color: #b388ff;
 }
-.dark-theme .product-image {
-  background: #2d2b38;
-  border: 1px solid #444;
-}
-.dark-theme .quantity-label {
-  color: #e0e0e0;
-}
-.dark-theme .form-select {
+.dark-theme .form-control {
   background-color: #2d2b38;
-  color: #e0e0e0;
   border-color: #444;
-}
-.dark-theme .form-select option {
-  background-color: #2d2b38;
   color: #e0e0e0;
 }
-.dark-theme .btn-add-cart {
-  background: #6a0dad;
-  color: #fff;
-}
-.dark-theme .btn-add-cart:hover {
-  background: #8d3fd6;
+.dark-theme .form-control:focus {
+  background-color: #2d2b38;
+  border-color: #b388ff;
+  color: #e0e0e0;
 }
 
 /* Profile Page Specific Styles */
