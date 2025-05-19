@@ -42,94 +42,6 @@ function formatSpecs($specs) {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    .compare-title {
-      text-align: center;
-      color: #6a0dad;
-      font-size: 2rem;
-      font-weight: 700;
-      margin: 2rem 0 2rem 0;
-      font-family: 'Roboto', sans-serif;
-    }
-    .compare-container {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    .compare-card {
-      background: #fff;
-      border-radius: 24px;
-      box-shadow: 0 2px 12px rgba(106,13,173,0.07);
-      padding: 2rem 1.5rem;
-      width: 400px;
-      max-width: 90vw;
-    }
-    .form-label {
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-    }
-    .form-select, .form-control {
-      border-radius: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    @media (max-width: 900px) {
-      .compare-container {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-    .input-group.search-bar {
-      align-items: center;
-    }
-    .input-group-text {
-      background: #f5f5f5;
-      border-right: none;
-      font-weight: 500;
-      color: #6a0dad;
-      display: flex;
-      align-items: center;
-      border-top-left-radius: 0.25rem;
-      border-bottom-left-radius: 0.25rem;
-      border: 1px solid #dee2e6;
-      border-right: none;
-    }
-    .search-bar .form-control {
-      border-radius: 0.25rem;
-      font-weight: 500;
-      background-color: #f5f5f5;
-      color: #333;
-      border-left: none;
-      border: 1px solid #dee2e6;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-    .phone-details {
-      margin-top: 2rem;
-      display: none;
-    }
-    .phone-details.active {
-      display: block;
-    }
-    .phone-image {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-    }
-    .specs-table {
-      width: 100%;
-      margin-top: 1rem;
-    }
-    .specs-table td {
-      padding: 0.5rem;
-      border-bottom: 1px solid #dee2e6;
-    }
-    .specs-table td:first-child {
-      font-weight: 600;
-      width: 40%;
-    }
-  </style>
 </head>
 <body>
   <?php include 'includes/header.php'; ?>
@@ -167,16 +79,6 @@ function formatSpecs($specs) {
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Theme toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      themeToggle.classList.add('spin');
-      themeToggle.addEventListener('animationend', () => themeToggle.classList.remove('spin'), { once: true });
-      document.body.classList.toggle('dark-theme');
-      themeToggle.classList.toggle('bi-moon-fill');
-      themeToggle.classList.toggle('bi-sun-fill');
-    });
-
     // Phone selection handling
     async function loadPhoneDetails(phoneId, targetElement) {
       if (!phoneId) {
