@@ -36,70 +36,86 @@
   width: auto;
   display: block;
 }
-.navbar-search-wrapper {
-  flex: 1;
-  max-width: 420px;
-  margin: 0 1rem;
-}
-.search-bar {
+
+/* Navbar Search Bar - Rewritten */
+.search-bar { /* This is the .input-group */
   display: flex;
-  align-items: center;
-  width: 100%;
+  align-items: stretch;
+  width: 300px; /* Increased width */
+  position: relative;
+  margin: 0;
+  height: 38px;
 }
-.search-bar .input-group {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
+
 .search-bar .input-group-text {
   background: #f5f5f5;
   border: 1px solid #ced4da;
   border-right: none;
-  font-weight: 500;
   color: #333;
   border-radius: 0.25rem 0 0 0.25rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0.375rem 0.75rem;
-  line-height: 1.5;
-  font-size: 1rem;
-  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
 }
+
 .search-bar .input-group-text i {
-  vertical-align: middle;
+  line-height: 1;
+  font-size: 1rem;
 }
+
 .search-bar .form-control {
   border-radius: 0 0.25rem 0.25rem 0;
-  font-weight: 500;
   background-color: #f5f5f5;
   color: #333;
   border: 1px solid #ced4da;
   border-left: none;
   padding: 0.375rem 0.75rem;
-  line-height: 1.5;
+  height: 100%;
   font-size: 1rem;
-  box-sizing: border-box;
+  flex: 1;
+  margin: 0;
+  line-height: 1;
+  text-align: left; /* Align placeholder text to the right */
 }
+
+.search-bar .form-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Dark Theme Search Bar */
 .dark-theme .search-bar .input-group-text {
   background-color: #2c2c2c;
   color: #e0e0e0;
-  border: 1px solid #6a0dad;
+  border-color: #6a0dad;
   border-right: none;
 }
+
 .dark-theme .search-bar .form-control {
   background-color: #2c2c2c;
   color: #e0e0e0;
-  border: 1px solid #6a0dad;
+  border-color: #6a0dad;
   border-left: none;
 }
-.dark-theme .search-bar .form-control:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(106, 13, 173, 0.25);
-  border-color: #6a0dad;
-}
+
 .dark-theme .search-bar .form-control::placeholder {
   color: #aaa;
 }
+
+.dark-theme .search-bar .form-control:focus {
+  background-color: #363342;
+  color: #e0e0e0;
+  border-color: #8d3fd6;
+  box-shadow: 0 0 0 0.25rem rgba(106, 13, 173, 0.35);
+}
+/* End of Rewritten Search Bar Styles */
+
 .navbar-links-wrapper {
   display: flex;
   align-items: center;
@@ -139,7 +155,7 @@
 /* Hero (.horizontal-divider) styling */
 .horizontal-divider {
   width: 100%;
-  height: 636px;
+  height: 500px; /* Reduced from 636px */
   background-color: #e6e6fa;
   border-radius: 2px;
   display: flex;
@@ -181,8 +197,10 @@
 .brands-section .section-title {
   font-family: 'Roboto', sans-serif;
   color: #6a0dad;
-  font-size: 32px;
+  font-size: 48px;
   font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 .dark-theme .brands-section .section-title { color: #6a0dad; }
 .brand-card {
@@ -210,6 +228,35 @@
 .dark-theme .brand-card { background-color: #1e1e1e; }
 .dark-theme .brand-card .card-title { color: #6a0dad; }
 .dark-theme .view-more { background-color: #6a0dad; }
+
+/* Homepage Brands Carousel - Card Sizing */
+#brandsCarousel .carousel-item {
+    padding: 0 15px; /* Add some padding if cards feel too close to edges or for multiple items later */
+}
+#brandsCarousel .carousel-item .card.brand-card {
+  max-width: 420px; /* Increased from 360px */
+  margin: 1rem auto; /* Center the card and add some vertical margin */
+  float: none; /* Ensure no floats are interfering if cards were in rows before */
+}
+
+#brandsCarousel .carousel-item .card.brand-card img {
+    max-height: 220px;
+    object-fit: contain; 
+    width: auto; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#brandsCarousel .carousel-control-prev-icon,
+#brandsCarousel .carousel-control-next-icon {
+    background-color: #6a0dad;
+    border-radius: 50%;
+    padding: 1rem;
+}
+
+#brandsCarousel .carousel-indicators [data-bs-target] {
+    background-color: #6a0dad;
+}
 
 .filter-sidebar {
   background: #ecebfc;
@@ -924,6 +971,12 @@ body.dark-theme {
 .dark-theme .cart-summary-title {
   color: #e0e0e0;
 }
+
+/* Added rule for the main H2 in cart list */
+.dark-theme .cart-list h2 {
+  color: #e0e0e0; /* Consistent with other cart titles */
+}
+
 .dark-theme .cart-item-desc {
   color: #aaa;
 }
@@ -939,6 +992,20 @@ body.dark-theme {
 }
 .dark-theme .continue-shopping {
   color: #e0e0e0;
+}
+
+/* Light theme styles for empty cart text */
+.cart-list .text-center h3 {
+  color: #6a0dad; /* Changed to purple */
+}
+.cart-list .text-center p {
+  color: #555; /* Standard dark paragraph for light theme */
+}
+
+/* Styles for empty cart text in dark theme */
+.dark-theme .cart-list .text-center h3,
+.dark-theme .cart-list .text-center p {
+  color: #e0e0e0; /* Light grey/white for dark theme - consistent */
 }
 
 /* ========== ENDPAGE (ORDER SUCCESS) ========== */
@@ -1058,8 +1125,8 @@ body.dark-theme {
   border: 1px solid #6a0dad;
 }
 .secondary-button:hover {
-  background: #6a0dad;
-  color: #fff;
+  background-color: #495057;
+  border-color: #495057;
 }
 /* Dark theme overrides for endpage */
 .dark-theme .success-container {
@@ -1597,3 +1664,222 @@ body.login-bg, body.register-bg, body.forgot-bg {
 .dark-theme .btn-add-cart:hover {
   background: #8d3fd6;
 }
+
+/* Profile Page Specific Styles */
+.profile-section-title {
+    color: #6a0dad; /* Dark purple */
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+}
+.profile-section-title:first-child {
+    margin-top: 0;
+}
+
+/* Style for the main H1 title on profile page */
+.profile-main-title {
+    color: #6a0dad; /* Consistent with other light-theme titles */
+}
+
+.orders-table th {
+    background-color: #f8f4ff; /* Light purple background for light theme */
+    color: #333; /* Default dark text for light theme th */
+}
+
+/* Dark theme overrides for Profile Page */
+.dark-theme .profile-section-title {
+    color: #c3a1e0; /* Lighter purple for dark theme */
+}
+
+.dark-theme .profile-main-title {
+    color: #e0e0e0; /* Light grey/white for dark theme - consistent with other main titles */
+}
+
+.dark-theme .orders-table {
+    background-color: #363342; /* Dark background for table */
+    color: #e0e0e0; /* Light text for table content */
+    border-color: #444; /* Darker borders for table */
+}
+
+.dark-theme .orders-table th {
+    background-color: #2d2b38; /* Darker background for th in dark theme */
+    color: #c3a1e0; /* Lighter purple text for th */
+    border-color: #444;
+}
+
+.dark-theme .orders-table tbody tr {
+    /* background-color: transparent; /* Allow table background to show */
+    background-color: #363342 !important; /* Explicit dark background */
+}
+
+.dark-theme .orders-table td {
+    border-color: #444 !important; /* Ensure td borders match */
+    color: #e0e0e0 !important; /* Ensure td text is light */
+    background-color: #363342 !important; /* Explicit dark background for cells too */
+}
+
+.dark-theme .orders-table .badge.bg-success {
+    color: #fff !important; /* Ensure high contrast for specific badges */
+}
+.dark-theme .orders-table .badge.bg-warning {
+    color: #000 !important; /* Ensure high contrast for specific badges */
+}
+.dark-theme .orders-table .badge.bg-info {
+    color: #000 !important; /* Ensure high contrast for specific badges, changed to dark text on light bg */
+}
+.dark-theme .orders-table .badge.bg-secondary {
+    color: #fff !important; /* Ensure high contrast for specific badges */
+}
+
+
+/* Styling for the 'no orders yet' paragraph in dark theme */
+.dark-theme .profile-section-title + p { /* Assumes p is directly after h2 */
+    color: #adb5bd; /* Lighter grey for paragraph text */
+}
+
+/* Ensure general .table-hover effects in dark theme are appropriate */
+.dark-theme .table-hover > tbody > tr:hover > * {
+  color: #fff; /* Example: ensure text stays white on hover */
+  background-color: #4a4658 !important; /* Darker hover for table rows */
+}
+
+/* Live Search Dropdown */
+.search-results-dropdown {
+    position: absolute;
+    top: 100%; /* Position below the search bar */
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    z-index: 1001; /* Above navbar, but below modals if any */
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: none; /* Hidden by default */
+}
+
+.search-results-dropdown ul {
+    margin-bottom: 0;
+    padding-left: 0; /* Reset padding if list-unstyled not enough */
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #eee;
+}
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: #f5f5f5;
+    color: #6a0dad;
+}
+
+.search-result-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain; /* Use contain to avoid cropping */
+    margin-right: 10px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.search-result-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-result-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.search-result-price {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+/* Dark theme for search results */
+.dark-theme .search-results-dropdown {
+    background-color: #2d2b38;
+    border-color: #444;
+}
+
+.dark-theme .search-result-item {
+    color: #e0e0e0;
+    border-bottom-color: #444;
+}
+
+.dark-theme .search-result-item:hover {
+    background-color: #363342;
+    color: #c3a1e0;
+}
+
+.dark-theme .search-result-img {
+    border-color: #555;
+}
+
+.dark-theme .search-result-price {
+    color: #aaa;
+}
+
+/* Style for plain <p> tags (like 'No results') in dark theme search dropdown */
+.dark-theme .search-results-dropdown > p {
+    color: #e0e0e0; /* Light text for general messages */
+}
+
+.dark-theme .search-results-dropdown > p.text-danger {
+    color: #f8d7da !important; /* Ensure Bootstrap's danger text is visible, or use a custom light red */
+    background-color: transparent !important; /* Remove any light background Bootstrap might add */
+}
+
+/* Login/Register Page Input Group Alignment */
+.login-container .input-group,
+.register-container .input-group {
+  align-items: stretch; /* Ensure children stretch to full height */
+}
+
+.login-container .input-group .form-control,
+.login-container .input-group .input-group-text,
+.register-container .input-group .form-control,
+.register-container .input-group .input-group-text {
+  height: 100%; /* Make them fill the parent's height */
+  display: flex; /* For vertical centering of icon inside span */
+  align-items: center; /* Vertically center icon */
+}
+
+.login-container .input-group .input-group-text i,
+.register-container .input-group .input-group-text i {
+  line-height: 1; /* Prevent extra space from line-height */
+}
+
+/* Delivery Page Specific Styles */
+.delivery-title {
+  text-align: center;
+  color: #6a0dad;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 2rem 0 2rem 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Light theme styles for empty cart text */
+.cart-list .text-center h3 {
+  color: #6a0dad; /* Changed to purple */
+}
+.cart-list .text-center p {
+  color: #555; /* Standard dark paragraph for light theme */
+}
+
+/* Styles for empty cart text in dark theme */
+.dark-theme .cart-list .text-center h3,
+.dark-theme .cart-list .text-center p {
+  color: #e0e0e0; /* Light grey/white for dark theme - consistent */
+}
+

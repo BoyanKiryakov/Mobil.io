@@ -40,40 +40,55 @@ require_once 'includes/session.php';
       <div class="hero-text">Discover Your Next Phone</div>
       <button class="btn shop-btn mt-3" onclick="window.location.href='catalogue.php'">Shop Now</button>
     </div>
-    <img src="images/homeimg.png" alt="Phone showcase" class="hero-image" />
+    <img src="images/homepage.png" alt="Phone showcase" class="hero-image" />
   </section>
 
   <!-- Most Popular Brands -->
   <section class="brands-section container py-5">
     <h2 class="section-title">Most Popular Brands</h2>
-    <div class="row g-4 mt-3">
-      <div class="col-md-4">
+    <div id="brandsCarousel" class="carousel slide mt-3" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#brandsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#brandsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#brandsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
         <div class="card brand-card">
           <img src="images/homesamsung.jpg" class="card-img-top" alt="Samsung" />
           <div class="card-body text-center">
             <h5 class="card-title">Samsung</h5>
-            <button class="btn view-more mt-2" onclick="window.location.href='catalogue.php?brand=Samsung'">View More</button>
+              <!-- Button removed -->
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
+        <div class="carousel-item">
         <div class="card brand-card">
           <img src="images/homeiphone.jpg" class="card-img-top" alt="iPhone" />
           <div class="card-body text-center">
             <h5 class="card-title">iPhone</h5>
-            <button class="btn view-more mt-2" onclick="window.location.href='catalogue.php?brand=iPhone'">View More</button>
+              <!-- Button removed -->
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
+        <div class="carousel-item">
         <div class="card brand-card">
           <img src="images/homemotorola.jpg" class="card-img-top" alt="Motorola" />
           <div class="card-body text-center">
             <h5 class="card-title">Motorola</h5>
-            <button class="btn view-more mt-2" onclick="window.location.href='catalogue.php?brand=Motorola'">View More</button>
+              <!-- Button removed -->
+            </div>
           </div>
         </div>
       </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#brandsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#brandsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </section>
 

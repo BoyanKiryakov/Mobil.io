@@ -75,7 +75,7 @@ try {
                             <img src="images/phones/<?php echo $image; ?>" 
                                  class="thumbnail <?php echo $index === 0 ? 'active' : ''; ?>" 
                                  alt="<?php echo htmlspecialchars($phone['name']); ?>"
-                                 onerror="this.src='images/phone-placeholder.jpg'"
+                                 onerror="this.onerror=null; this.src='images/placeholder.png'"
                                  onclick="updateMainImage(this.src)">
                         <?php endforeach; ?>
                     </div>
@@ -84,7 +84,7 @@ try {
                              class="main-image" 
                              id="mainImage"
                              alt="<?php echo htmlspecialchars($phone['name']); ?>"
-                             onerror="this.src='images/phone-placeholder.jpg'">
+                             onerror="this.onerror=null; this.src='images/placeholder.png'">
                     </div>
                 </div>
             </div>
