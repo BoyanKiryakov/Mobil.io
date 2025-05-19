@@ -56,50 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Contact Us - Mobil.io</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="styles.css"/>
-    <style>
-        .contact-title {
-            text-align: center;
-            color: #6a0dad;
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 2rem 0;
-            font-family: 'Roboto', sans-serif;
-        }
-        .contact-form {
-            background: #ecebfc;
-            border-radius: 24px;
-            box-shadow: 0 2px 12px rgba(106,13,173,0.07);
-            padding: 2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            border: 1px solid #e0e0e0;
-        }
-        .form-label {
-            font-weight: 600;
-            color: #333;
-        }
-        .form-control:focus {
-            border-color: #6a0dad;
-            box-shadow: 0 0 0 0.25rem rgba(106,13,173,0.25);
-        }
-        .btn-submit {
-            background-color: #6a0dad;
-            color: white;
-            border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: background-color 0.2s;
-        }
-        .btn-submit:hover {
-            background-color: #5729F3;
-            color: white;
-        }
-        .message-box {
-            min-height: 150px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <?php include 'includes/header.php'; ?>

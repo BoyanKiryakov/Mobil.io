@@ -160,7 +160,7 @@ function extractStorage($storageString) {
     rel="stylesheet"
   />
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <?php include 'includes/header.php'; ?>
@@ -550,21 +550,6 @@ function extractStorage($storageString) {
   <!-- Bootstrap JS bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      themeToggle.classList.add('spin');
-      themeToggle.addEventListener('animationend', () => themeToggle.classList.remove('spin'), { once: true });
-      document.body.classList.toggle('dark-theme');
-      themeToggle.classList.toggle('bi-moon-fill');
-      themeToggle.classList.toggle('bi-sun-fill');
-    });
-
-            function addToCart(phoneId) {      fetch('cart_actions.php', {        method: 'POST',        headers: {          'Content-Type': 'application/x-www-form-urlencoded',        },        body: `action=add&phone_id=${phoneId}&quantity=1`      })      .then(response => response.json())      .then(data => {        if (data.success) {          alert('Item added to cart successfully!');        } else {          alert(data.message || 'Error adding item to cart');        }      })      .catch(error => {        console.error('Error:', error);        alert('Error adding item to cart');      });    }
-
-    function viewProduct(phoneId) {
-      window.location.href = `product.php?id=${phoneId}`;
-    }
-
     // Handle filter form submission
     const filterForm = document.getElementById('filterForm');
     filterForm.addEventListener('submit', (e) => {
@@ -577,6 +562,34 @@ function extractStorage($storageString) {
         // Add the sort value to the form and submit
         filterForm.submit();
     });
+
+    // Add to cart functionality
+    function addToCart(phoneId) {
+      fetch('cart_actions.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `action=add&phone_id=${phoneId}&quantity=1`
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('Item added to cart successfully!');
+        } else {
+          alert(data.message || 'Error adding item to cart');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Error adding item to cart');
+      });
+    }
+
+    // View product functionality
+    function viewProduct(phoneId) {
+      window.location.href = `product.php?id=${phoneId}`;
+    }
 
     // Dual range slider functionality
     const minPriceRange = document.getElementById('minPriceRange');

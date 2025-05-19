@@ -67,71 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <title>Register - Mobil.io</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
-  <style>
-    body {
-      background: #e6e6fa;
-      min-height: 100vh;
-    }
-    .register-container {
-      background: #e6d6fa;
-      border-radius: 80px;
-      max-width: 520px;
-      margin: 40px auto;
-      padding: 40px 32px 32px 32px;
-      box-shadow: 0 4px 24px rgba(106,13,173,0.10);
-    }
-    .register-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-    .form-label {
-      font-weight: 600;
-    }
-    .form-control, .input-group-text {
-      border-radius: 0.4rem;
-    }
-    .register-btn {
-      background: #6a0dad;
-      color: #fff;
-      font-weight: 600;
-      border-radius: 2rem;
-      padding: 0.7rem 0;
-      font-size: 1.1rem;
-      margin-top: 1rem;
-    }
-    .register-btn:hover {
-      background: #8d3fd6;
-    }
-    .terms-label {
-      color: #222;
-      font-size: 1rem;
-      margin-left: 0.5rem;
-      font-weight: 400;
-    }
-    .back-arrow {
-      color: #6a0dad;
-      font-size: 1.5rem;
-      text-decoration: none;
-      display: inline-block;
-      margin-bottom: 10px;
-    }
-    .policy-links {
-      text-align: center;
-      margin-top: 1.5rem;
-    }
-    .policy-links a {
-      color: #6a0dad;
-      text-decoration: none;
-      display: block;
-      font-size: 1rem;
-      margin-bottom: 0.2rem;
-    }
-    .policy-links a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="register-container">
