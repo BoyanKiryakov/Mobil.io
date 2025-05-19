@@ -11,7 +11,8 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 
 try {
     $stmt = $pdo->prepare("
-        SELECT phones.*, brands.name as brand_name 
+        SELECT phones.*, 
+               brands.name as brand_name
         FROM phones 
         JOIN brands ON phones.brand_id = brands.id 
         WHERE phones.id = ?

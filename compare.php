@@ -90,12 +90,13 @@ function formatSpecs($specs) {
       try {
         const response = await fetch(`get_phone_details.php?id=${phoneId}`);
         const phone = await response.json();
+        console.log('Phone data received:', phone);
 
         const html = `
           <img src="images/phones/${phone.image || 'phone-placeholder.jpg'}" 
                class="phone-image" 
                alt="${phone.brand_name} ${phone.name}"
-               onerror="this.src='images/phone-placeholder.jpg'">
+               onerror="this.onerror=null; this.src='images/phone-placeholder.jpg';">
           <table class="specs-table">
             <tr>
               <td>Brand</td>
@@ -110,8 +111,8 @@ function formatSpecs($specs) {
               <td>${phone.os}</td>
             </tr>
             <tr>
-              <td>Screen Size</td>
-              <td>${phone.screen_size}"</td>
+              <td>Display</td>
+              <td>${phone.display ? phone.display : 'N/A'}</td>
             </tr>
             <tr>
               <td>RAM</td>

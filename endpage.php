@@ -108,7 +108,7 @@ try {
     <div class="action-buttons">
       <a href="catalogue.php" class="action-button secondary-button">Continue Shopping</a>
       <?php if ($currentUser): ?>
-        <a href="orders.php" class="action-button primary-button">View My Orders</a>
+        <a href="profile.php" class="action-button primary-button">View My Orders</a>
       <?php endif; ?>
     </div>
   </div>

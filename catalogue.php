@@ -84,7 +84,7 @@ if (!empty($where_clauses)) {
 }
 
 // Handle sorting
-$sort = $_GET['sort'] ?? 'price-low-high';
+$sort = $_GET['sort'] ?? 'price-high-low';
 switch ($sort) {
     case 'price-high-low':
         $sql .= " ORDER BY phones.price DESC";
@@ -165,11 +165,11 @@ function extractStorage($storageString) {
 <body>
   <?php include 'includes/header.php'; ?>
   <section class="container py-5">
-    <!-- Sort dropdown moved outside the main row -->
+    <!-- Sort dropdown moved back to its original position -->
     <div class="d-flex justify-content-end mb-4">
       <div>
         <label for="sort-by" class="form-label me-2 mb-0">Sort by:</label>
-        <select id="sort-by" name="sort" class="form-select d-inline-block w-auto" onchange="document.getElementById('filterForm').submit();">
+        <select id="sort-by" class="form-select d-inline-block w-auto"> <!-- Removed name="sort" from select -->
           <option value="price-low-high" <?php echo ($sort === 'price-low-high') ? 'selected' : ''; ?>>Price: Low to High</option>
           <option value="price-high-low" <?php echo ($sort === 'price-high-low') ? 'selected' : ''; ?>>Price: High to Low</option>
         </select>
@@ -182,8 +182,8 @@ function extractStorage($storageString) {
         <div class="filter-sidebar p-4">
           <h4 class="filter-title-main mb-4">Filter Specifications</h4>
           <form id="filterForm" method="GET" action="catalogue.php">
-            <!-- Add a hidden input for the sort value -->
-            <input type="hidden" name="sort" value="<?php echo htmlspecialchars($sort); ?>">
+            <!-- Hidden input for sort, to be updated by JS -->
+            <input type="hidden" name="sort" id="hiddenSortInput" value="<?php echo htmlspecialchars($sort); ?>">
             
             <div class="filter-section mb-3">
               <div class="filter-label">Operating System</div>
@@ -523,16 +523,23 @@ function extractStorage($storageString) {
           <?php foreach ($phones as $phone): ?>
           <div class="col-md-4">
             <div class="custom-phone-card">
-              <img src="images/phones/<?php echo strtolower(str_replace(' ', '', $phone['name'])); ?>.jpg" class="phone-img" alt="<?php echo htmlspecialchars($phone['brand_name'] . ' ' . $phone['name']); ?>" onerror="this.src='images/phone-placeholder.jpg'"/>
-              <div class="phone-info">
+              <img 
+                  src="images/phones/<?php echo htmlspecialchars(strtolower(str_replace(' ', '', $phone['name']))) . '.jpg'; ?>" 
+                  class="card-img-top phone-img mt-3" 
+                  alt="<?php echo htmlspecialchars($phone['name']); ?>"
+                  onerror="this.onerror=null;this.src='images/placeholder.png';"
+              >
+              <div class="card-body phone-info">
                 <h5 class="phone-title"><?php echo htmlspecialchars($phone['brand_name'] . ' ' . $phone['name']); ?></h5>
                 <div class="phone-price">€<?php echo number_format($phone['price'], 2); ?></div>
                 <div class="phone-spec">RAM: <?php echo htmlspecialchars(extractRAM($phone['ram'])); ?></div>
                 <div class="phone-spec">Internal Storage: <?php echo htmlspecialchars(extractStorage($phone['storage'])); ?></div>
                 <div class="phone-spec">Camera: <?php echo htmlspecialchars(extractMainCameraMp($phone['rear_cameras'])); ?></div>
-                <div class="d-flex justify-content-center gap-2 mt-3">
-                  <button class="btn btn-add-cart" onclick="addToCart(<?php echo $phone['id']; ?>)">Add to Cart</button>
-                  <button class="btn btn-view-product" onclick="viewProduct(<?php echo $phone['id']; ?>)">View Product</button>
+                <div class="d-flex justify-content-between align-items-center">
+                  <a href="product.php?id=<?php echo $phone['id']; ?>" class="btn btn-submit">View Product</a>
+                  <button class="btn btn-submit" onclick="addToCart(<?php echo $phone['id']; ?>)">
+                      <i class="bi bi-cart-plus-fill"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -550,18 +557,16 @@ function extractStorage($storageString) {
   <!-- Bootstrap JS bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Handle filter form submission
     const filterForm = document.getElementById('filterForm');
-    filterForm.addEventListener('submit', (e) => {
-        // Don't prevent default - let the form submit naturally
-    });
-
-    // Handle sort dropdown changes
     const sortDropdown = document.getElementById('sort-by');
+    const hiddenSortInput = document.getElementById('hiddenSortInput');
+
+    if (sortDropdown && filterForm && hiddenSortInput) {
     sortDropdown.addEventListener('change', () => {
-        // Add the sort value to the form and submit
+            hiddenSortInput.value = sortDropdown.value; // Update hidden input
         filterForm.submit();
     });
+    }
 
     // Add to cart functionality
     function addToCart(phoneId) {

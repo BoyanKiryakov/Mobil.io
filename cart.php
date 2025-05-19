@@ -75,7 +75,6 @@ try {
     <!-- Cart List -->
     <div class="cart-list">
       <a href="catalogue.php" class="continue-shopping"><i class="bi bi-arrow-left"></i> Continue Shopping</a>
-      <h2>Your Shopping Cart</h2>
       <?php if (!empty($cart_items)): ?>
         <?php foreach ($cart_items as $item): ?>
           <div class="cart-item" data-item-id="<?php echo $item['id']; ?>">

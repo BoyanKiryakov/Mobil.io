@@ -64,6 +64,14 @@ try {
         ) ENGINE=InnoDB;
     ");
 
+    // Add address and phone_number columns if they don't exist
+    try {
+        $pdo->exec("ALTER TABLE clients ADD COLUMN IF NOT EXISTS address VARCHAR(255) DEFAULT NULL");
+        $pdo->exec("ALTER TABLE clients ADD COLUMN IF NOT EXISTS phone_number VARCHAR(20) DEFAULT NULL");
+    } catch (PDOException $e) {
+        // Ignore errors if columns already exist
+    }
+
     $pdo->exec("
         CREATE TABLE IF NOT EXISTS carts (
           id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
